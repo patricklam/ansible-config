@@ -3,10 +3,14 @@
   vars:
     server_hostname: dev.patricklam.ca
   tasks:
-    - name: Install nginx web server
-      apt: pkg=nginx state=installed update_cache=true
+    - name: Install nginx web server and php-fpm
+      apt: pkg={{item}} state=installed update_cache=true
+      with_items:
+        - nginx
+        - php5-fpm
       notify:
         - start nginx
+        - start php5-fpm
     - name: Install subversion
       apt: pkg=subversion state=installed update_cache=true
     - name: svn checkout web contents
@@ -18,3 +22,7 @@
   handlers:
     - name: start nginx
       service: name=nginx state=started
+    - name: restart nginx
+      service: name=nginx state=restarted
+    - name: start php5-fpm
+      service: name=php5-fpm state=started
