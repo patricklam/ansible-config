@@ -1,19 +1,17 @@
 ---
-- name: Install nginx web server and php-fpm
+- name: install nginx web server
   apt: pkg={{item}} state=installed update_cache=true
   with_items:
     - nginx
-    - php5-fpm
   notify:
     - start nginx
-    - start php5-fpm
 
-- name: Install subversion
+- name: install subversion
   apt: pkg=subversion state=installed update_cache=true
 
 - name: svn checkout web contents
   subversion: repo=http://anjou.uwaterloo.ca/svn/repos-papers/trunk/plam.webpage dest=/srv/plam-www/ force=yes
 
-- name: Copy nginx configuration for patricklam.ca
+- name: copy nginx configuration for patricklam.ca
   template: src=patricklam/default.conf dest=/etc/nginx/conf.d/default.conf
   notify: restart nginx
