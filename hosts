@@ -8,7 +8,7 @@ newstorygroup.ca     ansible_ssh_user=root
 dev.patricklam.ca    ansible_ssh_user=root
 
 [webservers]
-dev.patricklam.ca
+dev.patricklam.ca server_hostname=dev.patricklam.ca mysql_port=3306
 
 [arch]
 ece459-1.uwaterloo.ca

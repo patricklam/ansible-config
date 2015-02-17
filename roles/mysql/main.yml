@@ -1,0 +1,11 @@
+---
+- name: install Mysql package
+  apt: pkg=mysql-server state=installed update_cache=true
+
+- name: create Mysql configuration file
+  template: src=my.cnf.j2 dest=/etc/mysql/my.cnf
+  notify: 
+  - restart mysql
+
+- name: start Mysql Service
+  service: name=mysqld state=started enabled=yes

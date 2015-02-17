@@ -1,0 +1,8 @@
+---
+- name: install webserver infrastructure
+  hosts: webservers
+
+  roles:
+    - nginx
+    - mysql
+
