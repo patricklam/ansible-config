@@ -1,0 +1,20 @@
+---
+- hosts: webservers
+  vars:
+    server_hostname: dev.patricklam.ca
+  tasks:
+    - name: Install nginx web server
+      apt: pkg=nginx state=installed update_cache=true
+      notify:
+        - start nginx
+    - name: Install subversion
+      apt: pkg=subversion state=installed update_cache=true
+    - name: svn checkout web contents
+      subversion: repo=http://anjou.uwaterloo.ca/svn/repos-papers/trunk/plam.webpage dest=/srv/plam-www/ force=yes
+    - name: Copy nginx configuration for patricklam.ca
+      template: src=patricklam/default.conf dest=/etc/nginx/conf.d/default.conf
+      notify: restart nginx
+
+  handlers:
+    - name: start nginx
+      service: name=nginx state=started

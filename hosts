@@ -1,0 +1,14 @@
+[debian]
+anjou.uwaterloo.ca
+berkeley.uwaterloo.ca
+cambridge.uwaterloo.ca
+ssh.patricklam.ca
+dev.judo-anjou.qc.ca ansible_ssh_user=cja
+newstorygroup.ca     ansible_ssh_user=root
+dev.patricklam.ca    ansible_ssh_user=root
+
+[webservers]
+dev.patricklam.ca
+
+[arch]
+ece459-1.uwaterloo.ca
