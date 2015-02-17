@@ -1,7 +1,5 @@
 ---
 - hosts: webservers
-  vars:
-    server_hostname: dev.patricklam.ca
   tasks:
     - name: Install nginx web server and php-fpm
       apt: pkg={{item}} state=installed update_cache=true
